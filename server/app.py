@@ -57,6 +57,14 @@ class PlantByID(Resource):
 
         return plant.to_dict()
 
+    def delete(self, id):
+        plant = db.session.get(Plant, id)
+
+        db.session.delete(plant)
+        db.session.commit()
+
+        return '', 204
+
 
 api.add_resource(PlantByID, '/plants/<int:id>')
 
